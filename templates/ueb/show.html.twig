@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UEB{% endblock %}
+
+{% block body %}
+    <h1>UEB</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ u_e_b.id }}</td>
+            </tr>
+            <tr>
+                <th>Mision</th>
+                <td>{{ u_e_b.mision }}</td>
+            </tr>
+            <tr>
+                <th>CantTrabajdirecto</th>
+                <td>{{ u_e_b.cantTrabajdirecto }}</td>
+            </tr>
+            <tr>
+                <th>CantTrabajIndirecto</th>
+                <td>{{ u_e_b.cantTrabajIndirecto }}</td>
+            </tr>
+            <tr>
+                <th>TotalTrabaj</th>
+                <td>{{ u_e_b.totalTrabaj }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ u_e_b.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_u_e_b_index') }}">back to list</a>
+
+    <a href="{{ path('app_u_e_b_edit', {'id': u_e_b.id}) }}">edit</a>
+
+    {{ include('ueb/_delete_form.html.twig') }}
+{% endblock %}

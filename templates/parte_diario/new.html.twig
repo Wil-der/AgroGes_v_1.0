@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ParteDiario{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/parteDiario.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+    {{ include('parte_diario/_form.html.twig') }}
+
+    <a href="{{ path('app_parte_diario_index') }}">back to list</a>
+{% endblock %}

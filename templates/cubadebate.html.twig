@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/home.css') }}" />
+{% endblock %}
+
+{% block body %}
+<section id="noticias" class="section section-column">
+  <h2>Últimas Noticias</h2>
+  <div id="noticias-container" class="content-home">
+  <div id="cubadebate-container" class="">
+    {% if content is empty %}
+        {{ include('nosignal.html.twig') }}
+    {% else %}
+        {{ content|raw }}  
+    {% endif %}   
+    </div>
+  </div>
+</section>
+     
+{% endblock %}
+

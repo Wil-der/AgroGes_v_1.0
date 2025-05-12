@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CentroUEB{% endblock %}
+
+{% block body %}
+    <h1>Create new CentroUEB</h1>
+
+    {{ include('centro_ueb/_form.html.twig') }}
+
+    <a href="{{ path('app_centro_u_e_b_index') }}">back to list</a>
+{% endblock %}

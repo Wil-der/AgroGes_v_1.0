@@ -1,0 +1,217 @@
+:root{
+    --verde: #1E5832;
+    --primary: #2A9D8F;  
+    --secondary: #E9C46A;  
+    --dark: #264653;  
+    --light: #F8F9FA; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+h1{
+  font-family: 'Newsreader', serif;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#parent {
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+}
+
+#container-navbar {
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    z-index: 999;
+}
+
+#container-slider {
+    position: fixed;
+    top: 70px;
+    transform: translateX(-250px);
+    width: 17%;
+    height: calc(100vh - 70px);
+    
+}
+
+#container-content {
+    position: relative;
+    width: 100%;
+    margin-left: 0%;
+    margin-top: 70px;
+    min-height: 100vh;
+}
+
+#container-footer {
+    position: relative;
+    width: 100%;
+    margin-left: 0%;
+}
+
+
+.bg-black {
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    --s: 194px; /* control the size */
+    --c1: #f6edb3;
+    --c2: #acc4a3;
+  
+    --_l: #0000 calc(25% / 3), var(--c1) 0 25%, #0000 0;
+    --_g: conic-gradient(from 120deg at 50% 87.5%, var(--c1) 120deg, #0000 0);
+  
+    background: var(--_g), var(--_g) 0 calc(var(--s) / 2),
+      conic-gradient(from 180deg at 75%, var(--c2) 60deg, #0000 0),
+      conic-gradient(from 60deg at 75% 75%, var(--c1) 0 60deg, #0000 0),
+      linear-gradient(150deg, var(--_l)) 0 calc(var(--s) / 2),
+      conic-gradient(
+        at 25% 25%,
+        #0000 50%,
+        var(--c2) 0 240deg,
+        var(--c1) 0 300deg,
+        var(--c2) 0
+      ),
+      linear-gradient(-150deg, var(--_l)) #55897c /* third color here */;
+    background-size: calc(0.866 * var(--s)) var(--s);
+  }
+
+  .section-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .section-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  #content-main {
+    min-height: 100vh;
+    width: 100%;
+  }
+
+
+  /* Estilos generales del formulario */
+
+
+
+
+
+  .table-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+  }
+  
+ .table-titulo {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: black;
+  }
+
+   .tabla th,
+  .tabla td {
+    padding: 12px 16px;
+    text-align: left;
+  } 
+  
+   .tabla tbody tr:nth-child(even) {
+    background-color: #f0f4f8;
+  }
+  
+ 
+  
+
+  .columna-numero,
+  .celda-numero {
+    width: 5%;
+    text-align: center;
+  }
+  
+  .columna-nombre,
+  .celda-nombre {
+    width: 60%;
+    font-weight: 500;
+  }
+  
+  .columna-opcion,
+  .celda-opcion {
+    width: 25%;
+    text-align: center;
+  }
+
+  .colmna-jefe,
+  .celda-jefe {
+    width: 15%;
+    text-align: center;
+  }
+
+  .columna-email,
+  .celda-email {
+    width: 15%;
+    text-align: center;
+  }
+  
+  #cuerpo-tabla-div {
+    max-height: 77vh; /* Ajusta este valor según el alto deseado */
+    width: 100%;
+    overflow-y: auto;
+    border: 1px solid var(--dark);
+    box-shadow: 0 0 10px var(--dark);
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+
+}
+
+.tabla th {
+    position: sticky;
+    top: 0;
+    background-color: #004080; /* Color de fondo para que se vea bien */
+    z-index: 1; /* Para que quede encima del contenido */
+    color: white;
+}
+
+.tabla th, .tabla td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}

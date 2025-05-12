@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
+{% endblock %}
+
+{% block body %}
+  <section id="home" class="section-row">
+    <div class="content-home text-home">
+      <h1>Bienvenidos al Sistema de Gestión de la UAM</h1>
+      <p>Este sistema permite gestionar de forma eficiente los procesos administrativos, operativos y logísticos de la Unión Agropecuaria Militar, optimizando recursos y facilitando la toma de decisiones estratégicas.</p>
+    </div>
+    <div class="content-home img-home">
+      <img src="{{ asset('img/logo2.png') }}" alt="logo" />
+    </div>
+  </section>
+
+  <section class="mision-vision section-row">
+    <div class="contenido content-home">
+      <h2>Misión</h2>
+      <p>{{ osde.mision ?? 'Sin Misión' }}</p>
+      {# <p>
+      Orientar la gestión hacia la elevación constante de la calidad de vida de los miembros de las FAR, en el orden alimentario, al incremento sostenido de las ventas y a dar respuesta oportuna a otras demandas puntuales autorizadas, mediante la producción eficiente de una amplia y variada gama de productos agropecuarios e industriales competitivos, capaces de deleitar a los consumidores directos y satisfacer las exigencias nutricionales de nuestras tropas.
+    </p> #}
+      <h2>Visión</h2>
+      <p>{{ osde.vision ?? 'Sin Visión' }}</p>
+      {# <p>
+      Se encuentra en capacidad de generar las producciones y alimentos que requieren los miembros de las FAR, con calidad, seguridad, requerimientos nutricionales y variedad, así como de autoabastecerse con el nivel necesario de alimentos para la masa animal que posee. Todo ello con alta eficiencia productiva y económica, mediante el empleo de tecnología de punta y el capital humano requerido, calificado y comprometido, así como alcanzar crecimientos anuales en las ventas destinadas al turismo que permitan cubrir los gastos que esta actividad genera.
+       </p> #}
+    </div>
+  </section>
+
+<section class="section-column">
+<div style="height: 60vh; width: 80%; overflow: hidden;">
+<div class="carousel-container" id="carousel">
+  <div class="carousel-slide" id="slide1">Slide 1: Usando `scroll-snap`</div>
+  <div class="carousel-slide" id="slide2">Slide 2: Selectores `:has()`</div>
+  <div class="carousel-slide" id="slide3">Slide 3: `aspect-ratio` moderno</div>
+</div>
+
+<div class="carousel-nav">
+  <a href="#slide1" title="Ir a Slide 1"></a>
+  <a href="#slide2" title="Ir a Slide 2"></a>
+  <a href="#slide3" title="Ir a Slide 3"></a>
+</div>
+</div>
+</section>
+
+{% endblock %}

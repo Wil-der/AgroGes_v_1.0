@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ParteDiario{% endblock %}
+
+{% block body %}
+    <h1>ParteDiario</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ parte_diario.id }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ parte_diario.fecha ? parte_diario.fecha|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_parte_diario_index') }}">back to list</a>
+
+    <a href="{{ path('app_parte_diario_edit', {'id': parte_diario.id}) }}">edit</a>
+
+    {{ include('parte_diario/_delete_form.html.twig') }}
+{% endblock %}

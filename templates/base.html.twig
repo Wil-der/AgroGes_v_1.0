@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>AgroGes</title>
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" />
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}" /> {# Test #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    {% block stylesheets %}
+
+    {% endblock %}
+
+    {% block javascripts %}
+
+    {% endblock %}
+  </head>
+  <body>
+    <div class="bg-black"></div>
+
+    <div id="parent">
+      <div id="container-navbar">{{ include('navbar.html.twig') }}</div>
+      <div id="container-slider" class="">{{ include('slidernavbar.html.twig') }}</div>
+      <div id="container-content" class="">
+        <div class="overlay" id="overlay-content"></div>
+        <div id="content-main">
+        {% block body %}
+
+        {% endblock %}
+      </div>
+      {# <div id="container-footer" class="">
+        {{ include('footer.html.twig') }}
+        <div class="overlay" id="overlay-footer"></div>
+      </div> #}
+    </div>
+
+    {{ include('loader.html.twig') }}
+    <script src="{{ asset('js/global.js') }}"></script>
+  </body>
+</html>

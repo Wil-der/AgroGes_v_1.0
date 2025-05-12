@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Especialidad{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/especialidad.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+    {{ include('especialidad/_form.html.twig') }}
+
+{% endblock %}

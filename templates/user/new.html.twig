@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+{% endblock %}
+
+
+{% block body %}
+
+
+    {{ include('user/_form.html.twig') }}
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const empresaField = document.querySelector('#user_empresa');
+        const especialidadField = document.querySelector('#user_especialidad');
+        const centroCheckbox = document.querySelector('#user_centro_coordinacion');
+
+        // Función para desactivar los campos de empresa y especialidad
+        function toggleFromCentro() {
+            if (centroCheckbox.checked) {
+                empresaField.disabled = true;
+                especialidadField.disabled = true;
+            } else {
+                empresaField.disabled = false;
+                especialidadField.disabled = false;
+            }
+        }
+
+        // Función para desactivar el checkbox si hay un valor en empresa o especialidad
+        function toggleFromEmpresaEspecialidad() {
+            if (empresaField.value) {
+                especialidadField.disabled = true; // Desactiva especialidad si se selecciona empresa
+                especialidadField.value = ''; // Limpia el valor de especialidad
+            } else if (especialidadField.value) {
+                empresaField.disabled = true; // Desactiva empresa si se selecciona especialidad
+                empresaField.value = ''; // Limpia el valor de empresa
+            } else {
+                especialidadField.disabled = false; // Reactiva especialidad si no hay nada seleccionado
+                empresaField.disabled = false; // Reactiva empresa si no hay nada seleccionado
+            }
+        }
+
+        // Agregar eventos
+        centroCheckbox.addEventListener('change', toggleFromCentro);
+        empresaField.addEventListener('change', toggleFromEmpresaEspecialidad);
+        especialidadField.addEventListener('change', toggleFromEmpresaEspecialidad);
+
+        // Llamar a la función para inicializar el estado correcto al cargar la página
+        toggleFromCentro();
+        toggleFromEmpresaEspecialidad();
+    });
+</script>
+
+
+
+
+
+{% endblock %}
+
+

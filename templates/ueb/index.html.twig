@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UEB index{% endblock %}
+
+{% block body %}
+    <h1>UEB index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Mision</th>
+                <th>CantTrabajdirecto</th>
+                <th>CantTrabajIndirecto</th>
+                <th>TotalTrabaj</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for u_e_b in u_e_bs %}
+            <tr>
+                <td>{{ u_e_b.id }}</td>
+                <td>{{ u_e_b.mision }}</td>
+                <td>{{ u_e_b.cantTrabajdirecto }}</td>
+                <td>{{ u_e_b.cantTrabajIndirecto }}</td>
+                <td>{{ u_e_b.totalTrabaj }}</td>
+                <td>{{ u_e_b.name }}</td>
+                <td>
+                    <a href="{{ path('app_u_e_b_show', {'id': u_e_b.id}) }}">show</a>
+                    <a href="{{ path('app_u_e_b_edit', {'id': u_e_b.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_u_e_b_new') }}">Create new</a>
+{% endblock %}

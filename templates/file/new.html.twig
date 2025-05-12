@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New File{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/file.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+    {{ include('file/_form.html.twig') }}
+
+{% endblock %}

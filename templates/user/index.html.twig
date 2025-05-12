@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <section id="" class="section-column table-container">
+  <h1 class="table-titulo">Usuarios</h1>
+  <div id="cuerpo-tabla-div">
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th class="columna-numero">No.</th>
+          <th class="columna-nombre">Nombre de Usuario</th>
+          {% if is_granted('ROLE_ADMIN') %}
+          <th class="columna-nombre">Roles</th>
+            <th class="columna-opcion">Acciones</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+          <tr class="fila">
+            <td class="celda-numero">{{ loop.index }}</td>
+            <td class="celda-nombre">{{ user.username }}</td>
+            {% if is_granted('ROLE_ADMIN') %}
+            <td class="celda-nombre">{{ user.roles ? user.roles|json_encode : '' }}</td>
+              <td class="celda-opcion">
+                <a href="{{ path('app_user_show', { 'id': user.id }) }}">Mostrar</a>
+                <a href="{{ path('app_user_edit', { 'id': user.id }) }}">Editar</a>
+              </td>
+            {% else %}
+              <td class="celda-opcion">
+                <a href="{{ path('app_user_show', { 'id': user.id }) }}">Mostrar</a>
+              </td>
+            {% endif %}
+          </tr>
+        {% else %}
+          <tr class="fila">
+            <td class="celda-numero" colspan="{% if is_granted('ROLE_ADMIN') %}5{% else %}4{% endif %}">
+              No se encontraron registros.
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+    <a href="{{ path('app_user_new') }}">Create new</a>
+{% endblock %}

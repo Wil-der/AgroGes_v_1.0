@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CentroUEB index{% endblock %}
+
+{% block body %}
+    <h1>CentroUEB index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>CantTrabajDirecto</th>
+                <th>CantTrabajIndirecto</th>
+                <th>TotalTrabaj</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for centro_u_e_b in centro_u_e_bs %}
+            <tr>
+                <td>{{ centro_u_e_b.id }}</td>
+                <td>{{ centro_u_e_b.name }}</td>
+                <td>{{ centro_u_e_b.cantTrabajDirecto }}</td>
+                <td>{{ centro_u_e_b.cantTrabajIndirecto }}</td>
+                <td>{{ centro_u_e_b.totalTrabaj }}</td>
+                <td>
+                    <a href="{{ path('app_centro_u_e_b_show', {'id': centro_u_e_b.id}) }}">show</a>
+                    <a href="{{ path('app_centro_u_e_b_edit', {'id': centro_u_e_b.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_centro_u_e_b_new') }}">Create new</a>
+{% endblock %}

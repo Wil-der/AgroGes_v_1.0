@@ -1,0 +1,49 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Transportacion;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class TransportacionType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('tipoTransporte', null, [
+                'row_attr' => ['class' => 'campo'],
+                'attr' => ['class' => 'entrada'],
+                'label_attr' => ['class' => 'etiqueta'],
+            ])
+            ->add('destinoCarga', null, [
+                'row_attr' => ['class' => 'campo'],
+                'attr' => ['class' => 'entrada'],
+                'label_attr' => ['class' => 'etiqueta'],
+            ])
+            ->add('cantidad', null, [
+                'row_attr' => ['class' => 'campo'],
+                'attr' => ['class' => 'entrada'],
+                'label_attr' => ['class' => 'etiqueta'],
+            ])
+            ->add('tipoMercancia', null, [
+                'row_attr' => ['class' => 'campo'],
+                'attr' => ['class' => 'entrada'],
+                'label_attr' => ['class' => 'etiqueta'],
+            ])
+            ->add('observaciones', null, [
+                'row_attr' => ['class' => 'campo'],
+                'attr' => ['class' => 'entrada'],
+                'label_attr' => ['class' => 'etiqueta'],
+            ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Transportacion::class,
+        ]);
+    }
+}
+
