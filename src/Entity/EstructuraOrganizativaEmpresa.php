@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\GuiaTelefonicaEmpresaRepository;
+use App\Repository\EstructuraOrganizativaEmpresaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\EntityListeners(['App\Event\GuiaTelefonicaEmpresaEntityListener'])]
-#[ORM\Entity(repositoryClass: GuiaTelefonicaEmpresaRepository::class)]
-class GuiaTelefonicaEmpresa
+#[ORM\EntityListeners(['App\Event\EstructuraOrganizativaEmpresaEntityListener'])]
+#[ORM\Entity(repositoryClass: EstructuraOrganizativaEmpresaRepository::class)]
+class EstructuraOrganizativaEmpresa
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,9 +22,6 @@ class GuiaTelefonicaEmpresa
 
     #[ORM\Column(length: 255)]
     private ?string $mimeType = null;
-
-    #[ORM\ManyToOne(inversedBy: 'guiaTelefonica')]
-    private ?Empresa $empresa = null;
 
     public function getId(): ?int
     {
@@ -63,18 +60,6 @@ class GuiaTelefonicaEmpresa
     public function setMimeType(string $mimeType): static
     {
         $this->mimeType = $mimeType;
-
-        return $this;
-    }
-
-    public function getEmpresa(): ?Empresa
-    {
-        return $this->empresa;
-    }
-
-    public function setEmpresa(?Empresa $empresa): static
-    {
-        $this->empresa = $empresa;
 
         return $this;
     }

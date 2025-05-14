@@ -69,7 +69,7 @@
       <div class="card">
         <div class="circle" style="opacity: 0;"></div>
         <div class="circle">
-          <div>{{ (empresa.cantTabajDirecto ?? 0) + (empresa.cantTabajIndirecto ?? 0) }}</div>
+          <div>{{ empresa.totalTrabaj }}</div>
         </div>
         <div class="card-inner">
           <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="48px" viewBox="0 0 24 24" width="48px" fill="#000000">
@@ -92,7 +92,7 @@
     </div>
         <button type="button">
           <div class="container">
-            <span class="hover-me"><a href="#">Estructura Organizativa de la Empresa</a></span>
+            <span class="hover-me"><a href="{{ path('app_empresa_download_estructura', { id: empresa.id }) }}">Estructura Organizativa de la Empresa</a></span>
             <div class="tooltip">
               <p>Descargar Documento</p>
             </div>
@@ -107,7 +107,7 @@
       <div>
         <button type="button">
           <div class="container">
-            <span class="hover-me"><a href="#">Guia de Telefonía de la Empresa</a></span>
+            <span class="hover-me"><a href="{{ path('app_empresa_download_guia', { id: empresa.id }) }}">Guia de Telefonía de la Empresa</a></span>
             <div class="tooltip">
               <p>Descargar Documento</p>
             </div>

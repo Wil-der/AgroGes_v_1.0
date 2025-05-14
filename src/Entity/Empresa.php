@@ -19,9 +19,6 @@ class Empresa
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $address = null;
-
     /**
      * @var Collection<int, ParteDiario>
      */
@@ -64,6 +61,9 @@ class Empresa
     #[ORM\OneToMany(targetEntity: GuiaTelefonicaEmpresa::class, mappedBy: 'empresa')]
     private Collection $guiaTelefonica;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?EstructuraOrganizativaEmpresa $estructuraOrganizativa = null;
+
    
     public function __construct()
     {
@@ -87,18 +87,6 @@ class Empresa
     public function setName(string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): static
-    {
-        $this->address = $address;
 
         return $this;
     }
@@ -297,6 +285,18 @@ class Empresa
                 $guiaTelefonica->setEmpresa(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEstructuraOrganizativa(): ?EstructuraOrganizativaEmpresa
+    {
+        return $this->estructuraOrganizativa;
+    }
+
+    public function setEstructuraOrganizativa(?EstructuraOrganizativaEmpresa $estructuraOrganizativa): static
+    {
+        $this->estructuraOrganizativa = $estructuraOrganizativa;
 
         return $this;
     }

@@ -36,7 +36,6 @@ final class GategayController extends AbstractController
         ArchivoUploader $archivoUploader,
         OsdeRepository $osdeRepository,
         EntityManagerInterface $entityManager,
-        ArchivoRemover $archivoRemover
     ): Response {
         $osde = $osdeRepository->find(1) ?? new Osde();
 

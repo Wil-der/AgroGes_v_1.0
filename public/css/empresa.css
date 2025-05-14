@@ -91,7 +91,7 @@
   /*---------------------------------------------------*/
 
   .form-container {
-    width: 400px;
+    width: 600px;
     border-radius: 0.75rem;
     background-color: var(--light);
     padding: 2rem;
@@ -132,6 +132,10 @@
     padding: 0.75rem 1rem;
     font-size: 17px;
     resize: none;
+  }
+
+  .campo textarea {
+    height: 150px;
   }
   
   .campo input:focus {
@@ -325,12 +329,13 @@ section {
 }
 
 #nombre-empresa {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 70px;
+  text-align: center;
 }
 
 #nombre-empresa h1 {

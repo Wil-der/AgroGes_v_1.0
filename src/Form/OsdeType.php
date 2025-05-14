@@ -43,7 +43,7 @@ class OsdeType extends AbstractType
                 ]
             )
             ->add('estructuraOrganizativa', FileType::class, [
-                'label' => 'Subir Estructura Organizativa',
+                'label' => 'Estructura Organizativa',
                 'mapped' => false,
                 'required' => false,
                 'attr' => ['class' => 'entrada'],
@@ -52,7 +52,7 @@ class OsdeType extends AbstractType
 
             ])
             ->add('guiaTelefonica', FileType::class, [
-                'label' => 'Subir Guía Telefónica',
+                'label' => 'Guía Telefónica',
                 'mapped' => false,
                 'required' => false,
                 'attr' => ['class' => 'entrada'],

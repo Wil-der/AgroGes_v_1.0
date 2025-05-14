@@ -7,7 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\File\TypeFileType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class EmpresaType extends AbstractType
 {
@@ -45,15 +46,22 @@ class EmpresaType extends AbstractType
             ],
                 'label_attr' => ['class' => 'etiqueta'],
             ])
-            ->add('fileUpload', TypeFileType::class, [
+            ->add('estructuraOrganizativa', FileType::class, [
                 'mapped' => false,
                 'required' => true,
-                'label' => 'Archivo',
+                'label' => 'Estructura Organizativa',
+                'row_attr' => ['class' => 'campo'],
+                'attr' => ['class' => 'entrada'],
+                'label_attr' => ['class' => 'etiqueta'],
+            ])
+            ->add('guiaTelefonica', FileType::class, [
+                'mapped' => false,
+                'required' => true,
+                'label' => 'Guia Telefonica',
                 'row_attr' => ['class' => 'campo'],
                 'attr' => ['class' => 'entrada'],
                 'label_attr' => ['class' => 'etiqueta'],
             ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
