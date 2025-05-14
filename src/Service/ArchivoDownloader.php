@@ -14,9 +14,9 @@ class ArchivoDownloader
         $this->uploadsDirectory = $uploadsDirectory;
     }
 
-    public function download(string $nombreArchivo): Response
+    public function download(string $url, string $nombreArchivo): Response
     {
-        $rutaCompleta = $this->uploadsDirectory . '/' . ltrim($nombreArchivo, '/');
+        $rutaCompleta = $this->uploadsDirectory . '/' . ltrim($url, '/');
 
         if (!file_exists($rutaCompleta)) {
             throw new \Exception('Archivo no encontrado');
@@ -29,7 +29,7 @@ class ArchivoDownloader
             200,
             [
                 'Content-Type' => $file->getMimeType(),
-                'Content-Disposition' => 'attachment; filename="' . $file->getBasename() . '"',
+                'Content-Disposition' => 'attachment; filename="' . $nombreArchivo . '"',
             ]
         );
     }

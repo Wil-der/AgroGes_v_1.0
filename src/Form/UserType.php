@@ -20,30 +20,32 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('username', null, [
-            'label' => 'Usuario',
-            'required' => true,
-            'constraints' => [
-                new NotBlank(['message' => 'Este campo es obligatorio']),
-            ],
-            'row_attr' => ['class' => 'campo'],
-            'attr' => [
-                'class' => 'entrada',
-                'placeholder' => 'Usuario',
-            ],
-            'label_attr' => ['class' => 'etiqueta'],
-        ])
+            ->add('username', null, [
+                'label' => 'Usuario',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['message' => 'Este campo es obligatorio']),
+                ],
+                'row_attr' => ['class' => 'campo'],
+                'attr' => [
+                    'class' => 'entrada',
+                    'placeholder' => 'Usuario',
+                ],
+                'label_attr' => ['class' => 'etiqueta'],
+            ])
             ->add('password', null, [
                 'label' => 'Contraseña',
                 'required' => true,
-            'constraints' => [
-                new NotBlank(['message' => 'Este campo es obligatorio']),
-            ],
-                'row_attr' => ['class' => 'campo',
-            ],
-                'attr' => ['class' => 'entrada',
-                'placeholder' => 'Contraseña',
-            ],
+                'constraints' => [
+                    new NotBlank(['message' => 'Este campo es obligatorio']),
+                ],
+                'row_attr' => [
+                    'class' => 'campo',
+                ],
+                'attr' => [
+                    'class' => 'entrada',
+                    'placeholder' => 'Contraseña',
+                ],
                 'label_attr' => ['class' => 'etiqueta'],
             ])
             ->add('empresa', EntityType::class, [
@@ -69,9 +71,6 @@ class UserType extends AbstractType
                 'row_attr' => ['class' => 'campo'],
                 'label_attr' => ['class' => 'etiqueta'],
             ]);
-            
-
-           
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\GuiaTelefonicaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\EntityListeners(['App\Event\GuiaTelefonicaEntityListener'])]
 #[ORM\Entity(repositoryClass: GuiaTelefonicaRepository::class)]
 class GuiaTelefonica
 {

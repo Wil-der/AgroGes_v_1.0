@@ -14,7 +14,6 @@ class ArchivoRemover
     public function eliminarArchivo(string $nombreArchivo): void
     {
         $ruta = $this->uploadsDirectory . '/' . ltrim($nombreArchivo, '/');
-
         if (file_exists($ruta)) {
             unlink($ruta);
         }

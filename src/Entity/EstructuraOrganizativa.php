@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EstructuraOrganizativaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\EntityListeners(['App\Event\EstructuraOrganizativaEntityListener'])]
 #[ORM\Entity(repositoryClass: EstructuraOrganizativaRepository::class)]
 class EstructuraOrganizativa
 {

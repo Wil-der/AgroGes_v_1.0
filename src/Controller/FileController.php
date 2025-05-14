@@ -84,7 +84,7 @@ final class FileController extends AbstractController
             throw $this->createNotFoundException('Archivo no encontrado.');
         }
 
-        return $archivoDownloader->download($file->getUrl());
+        return $archivoDownloader->download($file->getUrl(), $file->getName());
     }
 
 

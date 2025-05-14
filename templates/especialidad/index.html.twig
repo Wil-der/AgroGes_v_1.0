@@ -21,7 +21,7 @@
         {% for especialidad in especialidads %}
           <tr class="fila">
             <td class="celda-numero">{{ especialidad.id }}</td>
-            <td class="celda-nombre"><a href="{{ path('app_especialidad_show', { 'id': especialidad.id }) }}">{{ especialidad.name }}</a></td>
+            <td class="celda-nombre"><a href="{{ path('app_file_index', { 'id': especialidad.id }) }}">{{ especialidad.name }}</a></td>
             {% if is_granted('ROLE_ADMIN') %}
               <td class="celda-opcion">
                 <a href="{{ path('app_especialidad_edit', { 'id': especialidad.id }) }}">

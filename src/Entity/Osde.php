@@ -22,9 +22,6 @@ class Osde
     #[ORM\Column(type: Types::TEXT)]
     private ?string $vision = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $address = null;
-
     /**
      * @var Collection<int, ParteGeneral>
      */
@@ -75,18 +72,6 @@ class Osde
     public function setVision(string $vision): static
     {
         $this->vision = $vision;
-
-        return $this;
-    }
-
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): static
-    {
-        $this->address = $address;
 
         return $this;
     }

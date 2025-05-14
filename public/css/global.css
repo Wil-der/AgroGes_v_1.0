@@ -22,11 +22,10 @@ h1{
     display: none;
 }
 
-body {
+body, html {
     font-family: 'Roboto', sans-serif;
     width: 100vw;
     min-height: 100vh;
-    overflow-x: hidden;
 }
 
 #parent {
@@ -46,17 +45,16 @@ body {
     position: fixed;
     top: 70px;
     transform: translateX(-250px);
-    width: 17%;
+    width: 15%;
     height: calc(100vh - 70px);
     
 }
 
 #container-content {
-    position: relative;
-    width: 100%;
-    margin-left: 0%;
-    margin-top: 70px;
-    min-height: 100vh;
+  position: relative;
+  width: 100%;
+  margin-top: 70px;
+  min-height: calc(100vh - 70px);
 }
 
 #container-footer {
@@ -183,7 +181,7 @@ body {
   
   #cuerpo-tabla-div {
     max-height: 77vh; /* Ajusta este valor según el alto deseado */
-    width: 100%;
+    width: 80%;
     overflow-y: auto;
     border: 1px solid var(--dark);
     box-shadow: 0 0 10px var(--dark);
