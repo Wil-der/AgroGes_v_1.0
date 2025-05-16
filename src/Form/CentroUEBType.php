@@ -14,14 +14,25 @@ class CentroUEBType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('cantTrabajDirecto')
-            ->add('cantTrabajIndirecto')
-            ->add('totalTrabaj')
-            ->add('uEB', EntityType::class, [
-                'class' => UEB::class,
-                'choice_label' => 'id',
+            ->add('name', null, [
+                'label' => 'Nombre',
+                'row_attr' => ['class' => 'campo'],
+                'attr' => ['class' => 'entrada'],
+                'label_attr' => ['class' => 'etiqueta'],
             ])
+            ->add('cantTrabajDirecto', null, [
+                'label' => 'Trabajadores Directos',
+                'row_attr' => ['class' => 'campo'],
+                'attr' => ['class' => 'entrada'],
+                'label_attr' => ['class' => 'etiqueta'],
+            ])
+            ->add('cantTrabajIndirecto', null, [
+                'label' => 'Trabajadores Indirectos',
+                'row_attr' => ['class' => 'campo'],
+                'attr' => ['class' => 'entrada'],
+                'label_attr' => ['class' => 'etiqueta'],
+            ])
+            
         ;
     }
 

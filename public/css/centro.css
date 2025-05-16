@@ -1,30 +1,5 @@
-form {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  #user{
-    width: 100%;
-    margin: 10px;
-    padding: 10px;
-  }
-
-  .campo{
-    border-top: 1px solid black;
-    padding: 10px 0 25px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-  }
-
-
 .form-container {
-    width: 400px;
+    width: 600px;
     border-radius: 0.75rem;
     background-color: var(--light);
     padding: 2rem;
@@ -37,6 +12,17 @@ form {
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 700;
+  }
+
+  .campo{
+    border-top: 1px solid black;
+    padding: 10px 0 30px 0;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
   }
   
 
@@ -66,6 +52,10 @@ form {
     font-size: 17px;
     resize: none;
   }
+
+  .campo textarea {
+    height: 150px;
+  }
   
   .campo input:focus {
     border-color: var(--dark);
@@ -86,12 +76,4 @@ form {
   
   .btn:hover {
     background-color: #45a049;
-}
-
-.tabla-btn {
-  gap: 0 !important;
-}
-
-.tabla-btn svg {
-  margin: 0 !important;
 }

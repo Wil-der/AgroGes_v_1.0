@@ -87,3 +87,17 @@ form {
   .btn:hover {
     background-color: #45a049;
 }
+
+.columna-fecha, .celda-fecha{
+  width: 15%;
+  text-align: center;
+}
+
+.tabla-btn{
+  gap: 0 !important;
+}
+
+.tabla-btn svg{
+  margin: 0 !important;
+}
+

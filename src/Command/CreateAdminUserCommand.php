@@ -33,7 +33,7 @@ class CreateAdminUserCommand extends Command
         /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question'); // Obtener el helper correctamente
 
-        $output->writeln('Creando SuperAdministrador');
+        $output->writeln('Creando Administrador');
 
         // Pedir nombre de usuario
         $usernameQuestion = new Question('Nombre de usuario: ');
@@ -58,7 +58,7 @@ class CreateAdminUserCommand extends Command
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
-        $output->writeln('SuperAdministrador creado exitosamente.');
+        $output->writeln('Administrador creado exitosamente.');
 
         return Command::SUCCESS;
     }

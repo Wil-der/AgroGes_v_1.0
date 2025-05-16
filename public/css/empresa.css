@@ -468,3 +468,7 @@ transition: all 0.5s ease;
 #estructura {
   width: 700px;
 }
+
+.tabla-btn svg{
+  margin: 0 !important;
+}

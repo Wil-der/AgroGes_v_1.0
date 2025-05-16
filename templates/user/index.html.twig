@@ -2,6 +2,10 @@
 
 {% block title %}User index{% endblock %}
 
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+{% endblock %}
+
 {% block body %}
     <section id="" class="section-column table-container">
   <h1 class="table-titulo">Usuarios</h1>
@@ -25,12 +29,7 @@
             {% if is_granted('ROLE_ADMIN') %}
             <td class="celda-nombre">{{ user.roles ? user.roles|json_encode : '' }}</td>
               <td class="celda-opcion">
-                <a href="{{ path('app_user_show', { 'id': user.id }) }}">Mostrar</a>
-                <a href="{{ path('app_user_edit', { 'id': user.id }) }}">Editar</a>
-              </td>
-            {% else %}
-              <td class="celda-opcion">
-                <a href="{{ path('app_user_show', { 'id': user.id }) }}">Mostrar</a>
+                {{ include('user/_delete_form.html.twig') }}
               </td>
             {% endif %}
           </tr>

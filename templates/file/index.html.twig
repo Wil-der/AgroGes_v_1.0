@@ -1,37 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}File index{% endblock %}
+{% block title %}
+  File index
+{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/file.css') }}" />
+{% endblock %}
 
 {% block body %}
-    <h1>File index</h1>
-
-    <table class="table">
+  <section id="" class="section-column table-container">
+    <h1 class="table-titulo">Especialidades</h1>
+    <div id="cuerpo-tabla-div">
+      <table class="tabla">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>FechaSubida</th>
-                <th>actions</th>
-            </tr>
+          <tr>
+            <th class="columna-numero">Id</th>
+            <th class="columna-nombre">Nombre</th>
+            <th class="columna-fecha">Fecha Subida</th>
+            {% if is_granted('ROLE_ESPECIALIDAD') %}
+              <th class="columna-opcion">Acciones</th>
+            {% endif %}
+          </tr>
         </thead>
         <tbody>
-        {% for file in files %}
-            <tr>
-                <td>{{ loop.index }}</td>
-                <td> <a href="{{ path('app_file_download', {'id': file.id}) }}">{{ file.name }}</a></td>
-                <td>{{ file.fechaSubida ? file.fechaSubida|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_file_edit', {'id': file.id}) }}">edit</a>
-                    {{ include('file/_delete_form.html.twig') }}
+          {% for file in files %}
+            <tr class="fila">
+              <td class="celda-numero">{{ loop.index }}</td>
+              <td class="celda-nombre">
+                <a href="{{ path('app_file_download', { id: file.id }) }}">{{ file.name }}</a>
+              </td>
+              <td class="celda-fecha">{{ file.fechaSubida ? file.fechaSubida|date('d/m/y') : '' }}</td>
+              {% if is_granted('ROLE_ESPECIALIDAD') %}
+                <td class="celda-opcion">
+                  <button onclick="location.href='{{ path('app_file_edit', { id: file.id }) }}'" class="value tabla-btn" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+                      <path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
+                    </svg>Editar
+                  </button>
+                  {{ include('file/_delete_form.html.twig') }}
                 </td>
+              {% endif %}
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
+          {% else %}
+            <tr class="fila">
+              <td class="celda-numero" colspan="5">No se encontraron registros.</td>
             </tr>
-        {% endfor %}
+          {% endfor %}
         </tbody>
-    </table>
-
-    <a href="{{ path('app_file_new') }}">Create new</a>
+      </table>
+    </div>
+  </section>
 {% endblock %}

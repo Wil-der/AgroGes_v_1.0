@@ -231,3 +231,10 @@ a{
   padding: 0;
   margin: 0;
 }
+
+select{
+  width: 200px; /* Ancho fijo */
+  overflow: hidden; /* Oculta el desbordamiento */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  text-overflow: ellipsis; /* Agrega "..." si el texto es demasiado largo */
+}

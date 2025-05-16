@@ -1,0 +1,260 @@
+#section-nombre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#nombre-ueb {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+  text-align: center;
+}
+
+#nombre-ueb h1 {
+  font-size: 3.8rem;
+  margin-bottom: 2rem;
+  font-family: "Newsreader", serif;
+}
+
+#mision-ueb {
+  width: 50%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+#mision-ueb h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+#mision-ueb p {
+  font-size: 1rem;
+  line-height: 1.6;
+  width: 80%;
+}
+
+#section-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+#card-ueb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px;
+  width: 80%;
+}
+.card-inner p {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+}
+
+.form-container {
+    width: 600px;
+    border-radius: 0.75rem;
+    background-color: var(--light);
+    padding: 2rem;
+    margin: 60px auto;
+    
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+  }
+
+  .campo{
+    border-top: 1px solid black;
+    padding: 10px 0 30px 0;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+  }
+  
+
+  
+  .campo {
+    margin-top: 0.25rem;
+    font-size: 17px;
+    line-height: 1.25rem;
+    
+  }
+  
+  .campo label {
+    display: block;
+    color: black;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 5px;
+  }
+  
+  .campo input, .campo textarea {
+    width: 100%;
+    border-radius: 0.375rem;
+    border: 1px solid var(--dark);
+    outline: 0;
+    padding: 0.75rem 1rem;
+    font-size: 17px;
+    resize: none;
+  }
+
+  .campo textarea {
+    height: 150px;
+  }
+  
+  .campo input:focus {
+    border-color: var(--dark);
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    background-color: #4CAF50;
+    padding: 0.75rem;
+    text-align: center;
+    color: black;
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  
+  .btn:hover {
+    background-color: #45a049;
+}
+
+
+/* From Uiverse.io by G4b413l */ 
+.card {
+    width: 190px;
+    height: 254px;
+    transition: all 0.2s;
+    position: relative;
+    cursor: pointer;
+  
+  }
+  
+  .card-inner {
+    width: inherit;
+    height: inherit;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    position: relative;
+      z-index: -1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 30px;
+  }
+  
+  .card:hover {
+    transform: scale(1.04) rotate(1deg);
+  }
+  
+  .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(white, #ccc);
+    border-radius: 50%;
+    position: absolute;
+    animation: move-up6 2s ease-in infinite alternate-reverse;
+  }
+  
+  .circle:nth-child(1) {
+    top: -25px;
+    left: -25px;
+  }
+  
+  .circle:nth-child(2) {
+    bottom: -25px;
+    right: -25px;
+    animation-name: move-down1;
+  }
+  
+  @keyframes move-up6 {
+    to {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes move-down1 {
+    to {
+      transform: translateY(10px);
+    }
+  }
+  
+#div-crearcentro{
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+#div-crearcentro button{
+  border: none;
+  background-color: #004080;
+  padding: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  cursor: pointer;
+ border-top-right-radius: 10px;
+ border-top-left-radius: 10px;
+}
+.columna-nombre, .celda-nombre{
+  width: 35%;
+}
+.columna-acciones, .celda-acciones{
+  width: 10%;
+  text-align: center;
+}
+
+.columna-botones, .celda-botones{
+  width: 60%;
+  text-align: center;
+}
+
+.tabla-btn{
+  gap: 0;
+}
+
+.tabla-btn svg{
+  margin: 0 !important;
+}
+

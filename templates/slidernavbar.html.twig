@@ -35,6 +35,24 @@
             </svg>Crear Empresa
           </button>
         {% endif %}
+        {% if is_granted('ROLE_EMPRESA') %}
+          <button onclick="window.location.href='{{ path('app_ueb_new') }}'" class="value btn-redirect" id="btn-crear-ueb">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+              <path d="M16 2H8C4.691 2 2 4.691 2 8v13a1 1 0 0 0 1 1h13c3.309 0 6-2.691 6-6V8c0-3.309-2.691-6-6-6zm4 14c0 2.206-1.794 4-4 4H4V8c0-2.206 1.794-4 4-4h8c2.206 0 4 1.794 4 4v8z"></path>
+              <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z"></path>
+            </svg>Crear UEB
+          </button>
+        {% endif %}
+     {% if ueb is defined and ueb is not null and ueb.id is not null and is_granted('ROLE_EMPRESA') %}
+    <button onclick="window.location.href='{{ path('app_centro_u_e_b_new', { uebId: ueb.id }) }}'" class="value btn-redirect" id="btn-crear-centro" aria-label="Crear Centro">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+            <path d="M16 2H8C4.691 2 2 4.691 2 8v13a1 1 0 0 0 1 1h13c3.309 0 6-2.691 6-6V8c0-3.309-2.691-6-6-6zm4 14c0 2.206-1.794 4-4 4H4V8c0-2.206 1.794-4 4-4h8c2.206 0 4 1.794 4 4v8z"></path>
+            <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z"></path>
+        </svg>
+        Crear Centro
+    </button>
+{% endif %}
+
       </div>
     </div>
     <div class="container-btn">
@@ -63,7 +81,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
               <path d="M16 2H8C4.691 2 2 4.691 2 8v13a1 1 0 0 0 1 1h13c3.309 0 6-2.691 6-6V8c0-3.309-2.691-6-6-6zm4 14c0 2.206-1.794 4-4 4H4V8c0-2.206 1.794-4 4-4h8c2.206 0 4 1.794 4 4v8z"></path>
               <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z"></path>
-            </svg>Crear Centro
+            </svg>Crear Centro para Parte Diario
           </button>
         {% endif %}
       </div>

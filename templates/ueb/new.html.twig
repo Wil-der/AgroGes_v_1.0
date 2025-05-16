@@ -2,10 +2,10 @@
 
 {% block title %}New UEB{% endblock %}
 
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/ueb.css') }}" />
+{% endblock %}
+
 {% block body %}
-    <h1>Create new UEB</h1>
-
     {{ include('ueb/_form.html.twig') }}
-
-    <a href="{{ path('app_u_e_b_index') }}">back to list</a>
 {% endblock %}

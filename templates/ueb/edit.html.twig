@@ -2,12 +2,12 @@
 
 {% block title %}Edit UEB{% endblock %}
 
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/ueb.css') }}" />
+{% endblock %}
+
 {% block body %}
-    <h1>Edit UEB</h1>
 
-    {{ include('ueb/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('ueb/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    <a href="{{ path('app_u_e_b_index') }}">back to list</a>
-
-    {{ include('ueb/_delete_form.html.twig') }}
 {% endblock %}

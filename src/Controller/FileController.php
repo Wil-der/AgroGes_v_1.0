@@ -36,7 +36,6 @@ final class FileController extends AbstractController
         Security $security,
         ArchivoUploader $archivoUploader
     ): Response {
-
         $file = new File();
         $form = $this->createForm(FileType::class, $file);
         $form->handleRequest($request);
@@ -97,7 +96,7 @@ final class FileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_file_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_file_index', ['id' => $file->getEspecialidad()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('file/edit.html.twig', [

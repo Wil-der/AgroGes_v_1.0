@@ -87,3 +87,11 @@ form {
   .btn:hover {
     background-color: #45a049;
 }
+
+.tabla-btn {
+  gap: 0 !important;
+}
+
+.tabla-btn svg {
+  margin: 0 !important;
+}

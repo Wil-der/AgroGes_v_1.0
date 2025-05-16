@@ -1,0 +1,11 @@
+<div class="form-container">
+  <p class="title">Cambiar contraseña</p>
+  {{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.currentPassword) }}
+    {{ form_row(form.newPassword.first) }}
+    {{ form_row(form.newPassword.second) }}
+    <button class="btn">Actualizar</button>
+  {{ form_end(form) }}
+</div>
+

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Especialidad;
+use App\Entity\File;
+use App\Entity\User;
 use App\Form\EspecialidadType;
 use App\Repository\EspecialidadRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -72,10 +74,25 @@ final class EspecialidadController extends AbstractController
     public function delete(Request $request, Especialidad $especialidad, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$especialidad->getId(), $request->getPayload()->getString('_token'))) {
+            // Eliminar dependencias en user
+            $users = $entityManager->getRepository(User::class)->findBy(['especialidad' => $especialidad]);
+            foreach ($users as $user) {
+                $entityManager->remove($user);
+            }
+    
+            // Eliminar dependencias en file
+            $files = $entityManager->getRepository(File::class)->findBy(['especialidad' => $especialidad]);
+            foreach ($files as $file) {
+                $entityManager->remove($file);
+            }
+    
+            // Ahora puedes eliminar la especialidad
             $entityManager->remove($especialidad);
             $entityManager->flush();
         }
-
+    
         return $this->redirectToRoute('app_especialidad_index', [], Response::HTTP_SEE_OTHER);
     }
+    
+
 }
