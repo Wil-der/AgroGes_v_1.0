@@ -17,11 +17,7 @@ class Campana2Type extends AbstractType
                 'attr' => ['class' => 'entrada'],
                 'label_attr' => ['class' => 'etiqueta'],
             ])
-            ->add('nombreEntidad', null, [
-                'row_attr' => ['class' => 'campo'],
-                'attr' => ['class' => 'entrada'],
-                'label_attr' => ['class' => 'etiqueta'],
-            ])
+           
             ->add('recolectadasReal', null, [
                 'row_attr' => ['class' => 'campo'],
                 'attr' => ['class' => 'entrada'],
@@ -68,7 +64,7 @@ class Campana2Type extends AbstractType
                 'label_attr' => ['class' => 'etiqueta'],
             ])
             ->add('observaciones', null, [
-                'row_attr' => ['class' => 'campo'],
+                'row_attr' => ['class' => 'campo campo-observaciones'],
                 'attr' => ['class' => 'entrada'],
                 'label_attr' => ['class' => 'etiqueta'],
             ]);

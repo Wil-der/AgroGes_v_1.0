@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Asignar Empresas y Centros para el parte diario{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/parteDiario.css') }}">
+{% endblock %}
+
+{% block body %}
+ 
+<div class="form-container">
+    <p class="title">Designación de Empresas y UEBs para el parte diario</p>
+    {{ form_start(form) }}
+
+    {% for seccion_key, seccion_label in secciones %}
+        <h2>{{ seccion_label }}</h2>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <thead>
+                <tr><th colspan="2">Empresas</th></tr>
+            </thead>
+            <tbody>
+                {% for empresa in empresas %}
+                    <tr>
+                        <td>{{ empresa.name }}</td>
+                        <td>
+                            {{ form_row(attribute(attribute(form, seccion_key), 'empresa_' ~ empresa.id)) }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <thead>
+                <tr><th colspan="2">Centros</th></tr>
+            </thead>
+            <tbody>
+                {% for centro in centros %}
+                    <tr>
+                        <td>{{ centro.name }}</td>
+                        <td>
+                            {{ form_row(attribute(attribute(form, seccion_key), 'centro_' ~ centro.id)) }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const seccion_key = '{{ seccion_key }}';
+
+            const empresas = [
+                {% for empresa in empresas %}
+                    {{ empresa.id }}{{ not loop.last ? ',' : '' }}
+                {% endfor %}
+            ];
+
+            const centros = [
+                {% for centro in centros %}
+                    { id: {{ centro.id }}, empresaId: {{ centro.empresa.id }} }{{ not loop.last ? ',' : '' }}
+                {% endfor %}
+            ];
+
+            empresas.forEach(empresaId => {
+                const empresaCheckbox = document.getElementById(`confg_${seccion_key}_empresa_${empresaId}`);
+                if (!empresaCheckbox) return;
+
+                centros.forEach(centro => {
+                    if (centro.empresaId === empresaId) {
+                        const centroCheckbox = document.getElementById(`confg_${seccion_key}_centro_${centro.id}`);
+                        if (!centroCheckbox) return;
+
+                        // Estado inicial de la UEB según empresa
+                        centroCheckbox.disabled = !empresaCheckbox.checked;
+
+                        empresaCheckbox.addEventListener('change', () => {
+                            centroCheckbox.disabled = !empresaCheckbox.checked;
+                            if (!empresaCheckbox.checked) {
+                                centroCheckbox.checked = false;
+                            }
+                        });
+                    }
+                });
+            });
+        });
+        </script>
+    {% endfor %}
+
+    <button class="btn btn-primary mt-3">Guardar</button>
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+
+
+

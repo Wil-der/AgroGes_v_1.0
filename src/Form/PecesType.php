@@ -12,13 +12,23 @@ class PecesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('entidad', EntidadPecesType::class, [
+            ->add('plan', null, [
+                'row_attr' => ['class' => 'campo'],
+                'attr' => ['class' => 'entrada'],
+                'label_attr' => ['class' => 'etiqueta'],
+            ])
+            ->add('existanciaDiariaReal', null, [
+                'row_attr' => ['class' => 'campo'],
+                'attr' => ['class' => 'entrada'],
+                'label_attr' => ['class' => 'etiqueta'],
+            ])
+            ->add('existenciaacumuladaReal', null, [
                 'row_attr' => ['class' => 'campo'],
                 'attr' => ['class' => 'entrada'],
                 'label_attr' => ['class' => 'etiqueta'],
             ])
             ->add('observaciones', null, [
-                'row_attr' => ['class' => 'campo'],
+                'row_attr' => ['class' => 'campo campo-observaciones'],
                 'attr' => ['class' => 'entrada'],
                 'label_attr' => ['class' => 'etiqueta'],
             ]);

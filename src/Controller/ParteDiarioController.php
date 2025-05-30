@@ -2,19 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Centro;
-use App\Entity\CentroPeces;
-use App\Entity\EntidadPeces;
+use App\Entity\Empresa;
 use App\Entity\ParteDiario;
-use App\Entity\Peces;
-use App\Entity\User;
 use App\Form\ParteDiarioType;
-use App\Repository\CentroRepository;
-use App\Repository\EmpresaRepository;
-use App\Repository\EntidadPecesRepository;
-use App\Repository\EntidadRepository;
+use App\Repository\AsociacionSeccionRepository;
 use App\Repository\ParteDiarioRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,58 +33,68 @@ final class ParteDiarioController extends AbstractController
     }
 
     #[Route('/new', name: 'app_parte_diario_new', methods: ['GET', 'POST'])]
-    public function new(Request $request,EntidadPecesRepository $entidadPecesRepository, UserRepository $userRepository, EmpresaRepository $empresaRepository, CentroRepository $centroRepository, EntityManagerInterface $entityManager): Response
-    {
-        // 1. Usuario autenticado
-        // $user = $this->getUser();
-        $user = $userRepository->findOneBy(['username' => 'admin']);
-
-        // 2. Obtener la entidad del usuario
-        $empresa = $user->getEmpresa();
-
-        // 3. Obtener los centros de esa entidad
-        $entidad = $entidadPecesRepository->findOneBy(['nombre' => $empresa->getName()]);
-        $centros = $centroRepository->findBy(['empresa' => $empresa]);
-
-        // 4. Crear el objeto ParteDiario
+    public function new(
+        Request $request,
+        AsociacionSeccionRepository $asociacionRepository,
+        EntityManagerInterface $entityManager
+    ): Response {
         $parteDiario = new ParteDiario();
-        // 5. Crear el subformulario Peces manualmente
-        $peces = new Peces();
 
-        // Crear la entidadPeces
-        $entidadPeces = $entidad;
+        $user = $this->getUser();
+        $empresa = null;
 
-        // Por cada centro, crear un CentroPeces
-        foreach ($centros as $centro) {
-            $centroPeces = new CentroPeces();
-            $centroPeces->setNombre($centro->getName()); // nombre del centro fijo
-            $entidadPeces->addCentro($centroPeces); // Asignar el centroPeces a la entidadPeces
+        // Obtener la empresa del usuario si está disponible
+        if ($user !== null && $user->getEmpresa() !== null) {
+            $empresa = $user->getEmpresa()->getName(); // Lo envolvemos en un array
+        } else {
+            return $this->redirectToRoute('login');
         }
 
-        // Asignar la entidadPeces al objeto Peces
-        $peces->addEntidade($entidadPeces); // Agregar la entidadPeces a Peces
+        // Obtener asociaciones activas
+        // $asociaciones = $asociacionRepository->findAsociacionesActivas();
 
-        // Asignar Peces al ParteDiario
-        $parteDiario->setPeces($peces); // Asociar Peces al ParteDiario
+        // // Agrupar empresas y centros por sección (string)
+        // $empresasPorSeccion = [];
+        // $centrosPorSeccion = [];
+
+        // foreach ($asociaciones as $asociacion) {
+        //     $seccion = $asociacion->getSeccion();
+        //     if ($asociacion->getEmpresa()) {
+        //         $empresasPorSeccion[$seccion][] = $asociacion->getEmpresa();
+        //     }
+        //     if ($asociacion->getCentro()) {
+        //         $centrosPorSeccion[$seccion][] = $asociacion->getCentro();
+        //     }
+        // }
+
+        // dump($asociaciones);
+        // dump($empresasPorSeccion);
+        // dump($centrosPorSeccion);
+        // die;
 
 
+        // $form = $this->createForm(ParteDiarioType::class, $parteDiario, [
+        //     'empresasPorSeccion' => $empresasPorSeccion,
+        //     'centrosPorSeccion' => $centrosPorSeccion,
+        // ]);
 
-        // 6. Crear el formulario para el ParteDiario
         $form = $this->createForm(ParteDiarioType::class, $parteDiario);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $entityManager->persist($parteDiario);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_parte_diario_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_parte_diario_index');
         }
 
         return $this->render('parte_diario/new.html.twig', [
-            'form' => $form,
+            'form' => $form->createView(),
+            'empresa' => $empresa,
         ]);
     }
+
 
     #[Route('/{id}', name: 'app_parte_diario_show', methods: ['GET'])]
     public function show(ParteDiario $parteDiario): Response

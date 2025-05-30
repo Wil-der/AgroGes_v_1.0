@@ -12,11 +12,7 @@ class MaquinaIngenieraType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nombreEntidad', null, [
-                'row_attr' => ['class' => 'campo'],
-                'attr' => ['class' => 'entrada'],
-                'label_attr' => ['class' => 'etiqueta'],
-            ])
+
             ->add('buldocerA', null, [
                 'row_attr' => ['class' => 'campo'],
                 'attr' => ['class' => 'entrada'],
@@ -78,7 +74,7 @@ class MaquinaIngenieraType extends AbstractType
                 'label_attr' => ['class' => 'etiqueta'],
             ])
             ->add('observaciones', null, [
-                'row_attr' => ['class' => 'campo'],
+                'row_attr' => ['class' => 'campo campo-observaciones'],
                 'attr' => ['class' => 'entrada'],
                 'label_attr' => ['class' => 'etiqueta'],
             ])
