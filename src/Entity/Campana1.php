@@ -20,38 +20,35 @@ class Campana1
     #[ORM\Column(length: 255)]
     private ?string $nombreEntidad = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $roturadasPlan = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $roturadasReal = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $sembradasPlan = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $sembradasReal = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $roturadasPapaArrozPlan = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $roturadasPapaArrozReal = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $sembradasPapaArrozPlan = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $sembradasPapaArrozReal = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $otrasProducciones = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $otrasProduccionesReal = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?array $total = null;
 
     public function getId(): ?int
     {
@@ -202,15 +199,4 @@ class Campana1
         return $this;
     }
 
-    public function getTotal(): ?array
-    {
-        return $this->total;
-    }
-
-    public function setTotal(?array $total): static
-    {
-        $this->total = $total;
-
-        return $this;
-    }
 }

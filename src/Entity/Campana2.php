@@ -17,42 +17,39 @@ class Campana2
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $observaciones = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $recolectadasPlan = null;
-
+    
     #[ORM\Column(length: 255)]
     private ?string $nombreEntidad = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $recolectadasReal = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $sembradasPlan = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $sembradasReal = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $roturadasPapaArrozPlan = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $roturadasPapaArrozReal = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $sembradasPapaArrozPlan = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $sembradasPapaArrozReal = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $otrasProduccionesPlan = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $otrasProduccionesReal = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?array $total = null;
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -202,15 +199,4 @@ class Campana2
         return $this;
     }
 
-    public function getTotal(): ?array
-    {
-        return $this->total;
-    }
-
-    public function setTotal(?array $total): static
-    {
-        $this->total = $total;
-
-        return $this;
-    }
 }

@@ -6,10 +6,6 @@
     --light: #F8F9FA; 
 }
 .content-home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     width: 50%;
     height: 100vh;
     padding: 30px;
@@ -91,12 +87,15 @@
     align-items: center;
     justify-content: start;
     width: 100%;
-    height: 100%;
-    padding: 30px;  
-    overflow-y: scroll;
     border: 2px solid var(--dark);
     background-color: var(--light);
     box-shadow: 0 0 10px var(--dark);
+    padding: 30px;
+  }
+
+  #cubadebate-container a {
+    color: #4363cc;
+    text-decoration: none;
   }
 
   #archive {
@@ -106,12 +105,10 @@
     justify-content: start;
     width: 100%;
     height: 100%;
-    padding: 30px;
   }
   
 #noticias-container {
   width: 100%;
-  max-height: 85vh;
 }
   
 

@@ -20,44 +20,41 @@ class HechosExtraordinarios
     #[ORM\Column(length: 255)]
     private ?string $nombreEntidad = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $acumuladosAños = null;
+    #[ORM\Column]
+    private ?int $acumuladosAnos = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $hsgMayorMenor = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $hgMayorMenor = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $hurtoRoboViolencia = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $hurtoRoboFuerza = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $hurtoRoboOtros = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $Arma = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $municion = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $accidenteTrabajo = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $accidenteTransito = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $muertos = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $heridos = null;
-
-    #[ORM\Column(type: Types::JSON, nullable: true)]
-    private ?array $total = null;
 
     public function getId(): ?int
     {
@@ -88,14 +85,14 @@ class HechosExtraordinarios
         return $this;
     }
 
-    public function getAcumuladosAños(): ?int
+    public function getAcumuladosAnos(): ?int
     {
-        return $this->acumuladosAños;
+        return $this->acumuladosAnos;
     }
 
-    public function setAcumuladosAños(?int $acumuladosAños): static
+    public function setAcumuladosAnos(?int $acumuladosAnos): static
     {
-        $this->acumuladosAños = $acumuladosAños;
+        $this->acumuladosAnos = $acumuladosAnos;
 
         return $this;
     }
@@ -228,18 +225,6 @@ class HechosExtraordinarios
     public function setHeridos(?int $heridos): static
     {
         $this->heridos = $heridos;
-
-        return $this;
-    }
-
-    public function getTotal(): ?array
-    {
-        return $this->total;
-    }
-
-    public function setTotal(?array $total): static
-    {
-        $this->total = $total;
 
         return $this;
     }

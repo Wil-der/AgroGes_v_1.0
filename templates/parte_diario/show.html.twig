@@ -1,26 +1,354 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ParteDiario{% endblock %}
+{% block title %}Parte Diario - {{ fecha|date('d/m/Y') }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .parte-diario-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .pagination-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .pagination-nav {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .pagination-btn {
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .pagination-btn:hover {
+            background: #0056b3;
+        }
+        
+        .pagination-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .pagination-info {
+            margin: 0 15px;
+            font-weight: bold;
+            color: black;
+        }
+        
+        .section-container {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        .section-container.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #4a90e2 0%, #003366 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: 0 0 20px 0;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .data-table th {
+            background: var(--dark);
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+        
+        .data-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .field-name {
+            font-weight: 600;
+            color:rgb(0, 0, 0);
+            text-transform: capitalize;
+        }
+        
+        .field-value {
+            color:rgb(0, 0, 0);
+        }
+        
+        .empty-data {
+            text-align: center;
+            padding: 40px;
+            color:rgb(0, 0, 0);
+            font-style: italic;
+        }
+        
+        .observaciones {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 4px;
+            line-height: 1.5;
+            font-size: 17px;
+        }
+        
+        .numeric-value {
+            text-align: right;
+            font-family: monospace;
+            font-weight: bold;
+        }
+        
+        .navigation-summary {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .section-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .section-tag {
+            background:var(--dark);
+            color: white;
+            padding: 5px 9px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+        }
+        
+        .section-tag.current {
+            background: #007bff;
+        }
+        
+        .section-tag:hover {
+            background: #495057;
+        }
+        
+        .section-tag.current:hover {
+            background: #0056b3;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-    <h1>ParteDiario</h1>
+<div class="parte-diario-container">
+    <!-- Header con información general -->
+    <div class="header-info">
+        <h1>📊 Parte Diario</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>📅 Fecha:</strong> {{ fecha|date('d/m/Y') }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>🏢 Empresa:</strong> {{ empresa ? empresa.name : 'N/A' }}</p>
+            </div>
+        </div>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ parte_diario.id }}</td>
-            </tr>
-            <tr>
-                <th>Fecha</th>
-                <td>{{ parte_diario.fecha ? parte_diario.fecha|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- Resumen de navegación -->
+    <div class="navigation-summary">
+        <h5>📋 Secciones Disponibles ({{ secciones|length }} total)</h5>
+        <div class="section-list">
+            {% for key, seccion in secciones %}
+                <span class="section-tag" data-section="{{ loop.index0 }}" onclick="goToSection({{ loop.index0 }})">
+                    {{ seccion.titulo }}
+                </span>
+            {% endfor %}
+        </div>
+    </div>
 
-    <a href="{{ path('app_parte_diario_index') }}">back to list</a>
+    <!-- Controles de paginación -->
+    <div class="pagination-container">
+        <div class="pagination-nav">
+            <button class="pagination-btn" id="prevBtn" onclick="previousSection()">
+                ⬅️ Anterior
+            </button>
+            <span class="pagination-info">
+                Sección <span id="currentSection">1</span> de {{ secciones|length }}
+            </span>
+            <button class="pagination-btn" id="nextBtn" onclick="nextSection()">
+                Siguiente ➡️
+            </button>
+        </div>
+    </div>
 
-    <a href="{{ path('app_parte_diario_edit', {'id': parte_diario.id}) }}">edit</a>
+    <!-- Contenido de las secciones -->
+    {% for key, seccion in secciones %}
+        <div class="section-container" id="section-{{ loop.index0 }}" {% if loop.first %}style="display: block;"{% endif %}>
+            <h2 class="section-title">{{ seccion.titulo }}</h2>
+            
+            {% if seccion.datos %}
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Campo</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for campo in seccion.campos %}
+                                {% set valor = attribute(seccion.datos, 'get' ~ campo|title) %}
+                                {% if valor is not null %}
+                                    <tr>
+                                        <td class="field-name">
+                                            {% set label = attribute(seccion.label, loop.index0) %}
+                                            {% if label is not null %}
+                                                {{ label }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="field-value">
+                                            {% if valor is iterable %}
+                                                {% for item in valor %}
+                                                    {{ item }}{% if not loop.last %}, {% endif %}
+                                                {% endfor %}
+                                            {% else %}
+                                                {{ valor }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            
+                            <!-- Mostrar observaciones si existen -->
+                            {% set observaciones = attribute(seccion.datos, 'getObservaciones') %}
+                            {% if observaciones %}
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="observaciones">
+                                            <strong>📝 Observaciones:</strong><br>
+                                            {{ observaciones }}
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="empty-data">
+                    <p>❌ No hay datos disponibles para esta sección</p>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
 
-    {{ include('parte_diario/_delete_form.html.twig') }}
+<script>
+    let currentSectionIndex = 0;
+    const totalSections = {{ secciones|length }};
+    
+    function updatePagination() {
+        // Actualizar botones
+        document.getElementById('prevBtn').disabled = currentSectionIndex === 0;
+        document.getElementById('nextBtn').disabled = currentSectionIndex === totalSections - 1;
+        
+        // Actualizar contador
+        document.getElementById('currentSection').textContent = currentSectionIndex + 1;
+        
+        // Actualizar tags de sección
+        document.querySelectorAll('.section-tag').forEach((tag, index) => {
+            tag.classList.toggle('current', index === currentSectionIndex);
+        });
+        
+        // Mostrar/ocultar secciones
+        document.querySelectorAll('.section-container').forEach((section, index) => {
+            section.classList.toggle('active', index === currentSectionIndex);
+            section.style.display = index === currentSectionIndex ? 'block' : 'none';
+        });
+        
+        // Scroll suave al top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    function nextSection() {
+        if (currentSectionIndex < totalSections - 1) {
+            currentSectionIndex++;
+            updatePagination();
+        }
+    }
+    
+    function previousSection() {
+        if (currentSectionIndex > 0) {
+            currentSectionIndex--;
+            updatePagination();
+        }
+    }
+    
+    function goToSection(index) {
+        currentSectionIndex = index;
+        updatePagination();
+    }
+    
+    // Inicializar paginación
+    updatePagination();
+    
+    // Navegación con teclado
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            nextSection();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            previousSection();
+        }
+    });
+</script>
 {% endblock %}

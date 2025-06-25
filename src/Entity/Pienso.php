@@ -20,41 +20,38 @@ class Pienso
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $observaciones = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $avicolaPlan = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $avicolaReal = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $avicolaCovertura = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $porcinoPlan = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $porcinoReal = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $porcinoCovertura = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $piensoLiquidoPlan = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $piensoLiquidoAcumuladoDia = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $piensoLiquidoReal = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $extraccionMateriaPrimaDia = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $extraccionMateriaPrimaAcumulada = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?array $total = null;
 
     public function getId(): ?int
     {
@@ -201,18 +198,6 @@ class Pienso
     public function setExtraccionMateriaPrimaAcumulada(?int $extraccionMateriaPrimaAcumulada): static
     {
         $this->extraccionMateriaPrimaAcumulada = $extraccionMateriaPrimaAcumulada;
-
-        return $this;
-    }
-
-    public function getTotal(): ?array
-    {
-        return $this->total;
-    }
-
-    public function setTotal(?array $total): static
-    {
-        $this->total = $total;
 
         return $this;
     }

@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnUsuarios = document.getElementById('btn-usuarios');
     const opcionUsuarios = document.getElementById('opcion-usuarios');
 
+    const menu = document.getElementById('container-left');
+
+    console.log(menu);
+
     const ids = [
         { btnId: 'btn-empresas', opcionId: 'opcion-empresas' },
         { btnId: 'btn-espacialidad', opcionId: 'opcion-espacialidad' },
@@ -63,18 +67,15 @@ document.addEventListener('DOMContentLoaded', function() {
             !sidebarContainer.classList.contains('opened')) {
                 sidebarContainer.classList.toggle('opened');
                 mainContent.classList.toggle('right');
-                footer.classList.toggle('right');
-                overlayContent.classList.toggle('active');
-                overlayFooter.classList.toggle('active');
+                menu.classList.toggle('absolute');
+                menu.classList.toggle('fixed');
             }else{
                 sidebarContainer.classList.toggle('opened');
                 sidebarContainer.classList.toggle('closed');
                 mainContent.classList.toggle('right');
                 mainContent.classList.toggle('left');
-                footer.classList.toggle('right');
-                footer.classList.toggle('left');
-                overlayContent.classList.toggle('active');
-                overlayFooter.classList.toggle('active');
+                menu.classList.toggle('fixed');
+                menu.classList.toggle('absolute');
             }
     }
     

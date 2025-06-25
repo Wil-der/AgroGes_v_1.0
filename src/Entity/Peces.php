@@ -16,22 +16,20 @@ class Peces
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nombreEntidad = null;
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $observaciones = null;
 
-    /**
-     * @var Collection<int, EntidadPeces>
-     */
-    #[ORM\OneToMany(targetEntity: EntidadPeces::class, mappedBy: 'peces')]
-    private Collection $entidades;
+    #[ORM\Column]
+    private ?int $plan = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $total = null;
+    #[ORM\Column]
+    private ?int $existanciaDiariaReal = null;
 
-    public function __construct()
-    {
-        $this->entidades = new ArrayCollection();
-    }
+    #[ORM\Column]
+    private ?int $existenciaacumuladaReal = null;
 
     public function getId(): ?int
     {
@@ -50,44 +48,50 @@ class Peces
         return $this;
     }
 
-    /**
-     * @return Collection<int, EntidadPeces>
-     */
-    public function getEntidades(): Collection
+    public function getPlan(): ?int
     {
-        return $this->entidades;
+        return $this->plan;
     }
 
-    public function addEntidade(EntidadPeces $entidade): static
+    public function setPlan(?int $plan): static
     {
-        if (!$this->entidades->contains($entidade)) {
-            $this->entidades->add($entidade);
-            $entidade->setPeces($this);
-        }
+        $this->plan = $plan;
 
         return $this;
     }
 
-    public function removeEntidade(EntidadPeces $entidade): static
+    public function getExistanciaDiariaReal(): ?int
     {
-        if ($this->entidades->removeElement($entidade)) {
-            // set the owning side to null (unless already changed)
-            if ($entidade->getPeces() === $this) {
-                $entidade->setPeces(null);
-            }
-        }
+        return $this->existanciaDiariaReal;
+    }
+
+    public function setExistanciaDiariaReal(?int $existanciaDiariaReal): static
+    {
+        $this->existanciaDiariaReal = $existanciaDiariaReal;
 
         return $this;
     }
 
-    public function getTotal(): ?array
+    public function getExistenciaacumuladaReal(): ?int
     {
-        return $this->total;
+        return $this->existenciaacumuladaReal;
     }
 
-    public function setTotal(?array $total): static
+    public function setExistenciaacumuladaReal(?int $existenciaacumuladaReal): static
     {
-        $this->total = $total;
+        $this->existenciaacumuladaReal = $existenciaacumuladaReal;
+
+        return $this;
+    }
+
+    public function getNombreEntidad(): ?string
+    {
+        return $this->nombreEntidad;
+    }
+
+    public function setNombreEntidad(string $nombreEntidad): static
+    {
+        $this->nombreEntidad = $nombreEntidad;
 
         return $this;
     }

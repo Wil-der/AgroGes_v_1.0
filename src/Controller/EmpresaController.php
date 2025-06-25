@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -77,7 +78,7 @@ final class EmpresaController extends AbstractController
         Request $request,
         Empresa $empresa,
         EntityManagerInterface $entityManager,
-        ArchivoUploader $archivoUploader // Asegúrate de inyectar ArchivoUploader
+        ArchivoUploader $archivoUploader 
     ): Response {
         $form = $this->createForm(EmpresaType::class, $empresa);
         $form->handleRequest($request);
@@ -128,13 +129,17 @@ final class EmpresaController extends AbstractController
         return $archivoDownloader->download($estructura->getUrl(), $estructura->getName());
     }
 
-    #[Route('/empresa/{id}/download/guia', name: 'app_empresa_download_guia', methods: ['GET'])]
+    #[Route('/{id}/download/guia', name: 'app_empresa_download_guia', methods: ['GET'])]
     public function downloadGuiaTelefonica(
         Empresa $empresa,
         ArchivoDownloader $archivoDownloader
     ): Response {
         if ($empresa->getGuiaTelefonica()->isEmpty()) {
-            throw new NotFoundHttpException('No hay archivo de Guía Telefónica disponible.');
+        // Agrega un mensaje flash para informar al usuario
+        $this->addFlash('error', 'No hay archivos disponibles para descargar.');
+        
+        // Redirige a la página anterior o a una ruta específica
+        return $this->redirectToRoute('app_empresa_show', ['id' => $empresa->getId()]);
         }
 
         $guia = $empresa->getGuiaTelefonica()->last();

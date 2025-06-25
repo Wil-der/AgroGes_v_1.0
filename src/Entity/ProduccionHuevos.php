@@ -19,17 +19,6 @@ class ProduccionHuevos
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $observaciones = null;
 
-    /**
-     * @var Collection<int, Entidad>
-     */
-    #[ORM\OneToMany(targetEntity: Entidad::class, mappedBy: 'produccionHuevos')]
-    private Collection $entidades;
-
-    public function __construct()
-    {
-        $this->entidades = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -47,32 +36,77 @@ class ProduccionHuevos
         return $this;
     }
 
-    /**
-     * @return Collection<int, Entidad>
-     */
-    public function getEntidades(): Collection
+    #[ORM\Column]
+    private ?int $plan = null;
+
+    #[ORM\Column]
+    private ?int $existenciaDiaria = null;
+
+    #[ORM\Column]
+    private ?int $existenciaAcumulada = null;
+
+    #[ORM\Column]
+    private ?int $existenciaAlmacen = null;
+
+    #[ORM\Column (nullable: true)]
+    private ?int $total = null;
+
+    public function getTotal(): ?int
     {
-        return $this->entidades;
+        return $this->total;
     }
 
-    public function addEntidade(Entidad $entidade): static
+    public function setTotal(?int $total): static
     {
-        if (!$this->entidades->contains($entidade)) {
-            $this->entidades->add($entidade);
-            $entidade->setProduccionHuevos($this);
-        }
+        $this->total = $total;
 
         return $this;
     }
 
-    public function removeEntidade(Entidad $entidade): static
+    public function getPlan(): ?int
     {
-        if ($this->entidades->removeElement($entidade)) {
-            // set the owning side to null (unless already changed)
-            if ($entidade->getProduccionHuevos() === $this) {
-                $entidade->setProduccionHuevos(null);
-            }
-        }
+        return $this->plan;
+    }
+
+    public function setPlan(?int $plan): static
+    {
+        $this->plan = $plan;
+
+        return $this;
+    }
+
+    public function getExistenciaDiaria(): ?int
+    {
+        return $this->existenciaDiaria;
+    }
+
+    public function setExistenciaDiaria(?int $existenciaDiaria): static
+    {
+        $this->existenciaDiaria = $existenciaDiaria;
+
+        return $this;
+    }
+
+    public function getExistenciaAcumulada(): ?int
+    {
+        return $this->existenciaAcumulada;
+    }
+
+    public function setExistenciaAcumulada(?int $existenciaAcumulada): static
+    {
+        $this->existenciaAcumulada = $existenciaAcumulada;
+
+        return $this;
+    }
+
+    public function getExistenciaAlmacen(): ?int
+    {
+        return $this->existenciaAlmacen;
+    }
+
+    public function setExistenciaAlmacen(?int $existenciaAlmacen): static
+    {
+        $this->existenciaAlmacen = $existenciaAlmacen;
 
         return $this;
     }

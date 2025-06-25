@@ -8,21 +8,32 @@
 
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    background-color: var(--light);
-    color: white;
+    background-color: white;
     width: 100%;
-    height: 100%;
-    z-index: 100;
-    box-shadow: 0px 0px 5px var(--light);
+    height: 70px;
+    position: relative;
+    z-index: 5;
+}
+
+.fixed {
+    position: fixed;
+    left: 0;
 }
 
 #container-left {
     display: flex;
     flex-direction: row;
     align-items: center;
+    background-color: white;
+    height: 70px;
+    width: 15%;
+}
 
+.absolute{
+    position: absolute;
+    left: 0;
 }
 
 #menu a {
@@ -69,9 +80,6 @@
 
 
 .input {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
     width: 100%;
     height: 100%;
     background-color: var(--light);
@@ -81,16 +89,16 @@
     background-color: transparent;
     border: none;
     font-size: 15px;
-    padding: 17px;
+    padding: 15px 0;
     color: rgb(0, 0, 0);
     display: flex;
     position: relative;
-    gap: 5px;
     cursor: pointer;
     align-items: center;
     margin-left: 15px;
     border: 2px solid transparent;
     margin-right: 5px;
+
 }
 
 
@@ -263,7 +271,7 @@
 
     100% {
         width: 85%;
-        margin-left: 17%;
+        margin-left: 15%;
 
     }
 }
@@ -302,10 +310,6 @@
     visibility: visible;
   }
   
-  .container-btn {
-    display: flex;
-    flex-direction: column;
-}
 
   .container-opcion {
     display: flex;

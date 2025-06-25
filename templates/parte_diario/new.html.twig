@@ -7,8 +7,31 @@
 {% endblock %}
 
 {% block body %}
+<div class="form-container-title">
+        <p class="title">Nuevo Parte</p>
+    <span style="width: 100%;padding: 15px 0;display: flex;justify-content: space-between;">
+    <p class="title" style="text-align: start;">Empresa: {{ empresa | title }}</p>
+    <p class="title" style="text-align: end;">Sección: {{ form_name | title }}</p>
+    </span>
+</div>
+
+<div id="barraProgreso">
+<div class="progress-container mb-4">
+        <div class="progress-info mb-2">
+            Progreso: {{ progress.completed }} de {{ progress.total }} completados ({{ progress.percent }}%)
+        </div>
+        <div class="progress" style="height: 25px;">
+            <div class="progress-bar bg-success" 
+                 role="progressbar" 
+                 style="width: {{ progress.percent }}%;"
+                 aria-valuenow="{{ progress.percent }}" 
+                 aria-valuemin="0" 
+                 aria-valuemax="100">
+            </div>
+        </div>
+    </div>
+</div>
 
     {{ include('parte_diario/_form.html.twig') }}
 
-    <a href="{{ path('app_parte_diario_index') }}">back to list</a>
 {% endblock %}

@@ -65,6 +65,9 @@ class ParteDiario
     #[ORM\ManyToOne(inversedBy: 'parteDiario')]
     private ?Empresa $empresa = null;
 
+    #[ORM\Column]
+    private ?bool $completo = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -270,6 +273,18 @@ class ParteDiario
     public function setEmpresa(?Empresa $empresa): static
     {
         $this->empresa = $empresa;
+
+        return $this;
+    }
+
+    public function isCompleto(): ?bool
+    {
+        return $this->completo;
+    }
+
+    public function setCompleto(bool $completo): static
+    {
+        $this->completo = $completo;
 
         return $this;
     }

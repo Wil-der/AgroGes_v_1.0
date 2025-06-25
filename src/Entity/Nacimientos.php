@@ -20,38 +20,59 @@ class Nacimientos
     #[ORM\Column(length: 255)]
     private ?string $nombreEntidad = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $vacunoHoy = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $vacunoAcumulado = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $ovinohoy = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $ovinoAcumulado = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $porcinoHoy = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $porcinoAcumulado = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $equinoHoy = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $equinoAcumulado = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $totalhoy = null;
+    #[ORM\Column (nullable: true)]
+    private ?int $totalHoy = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column (nullable: true)]
     private ?int $totalAcumulado = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $total = null;
+    public function getTotalHoy(): ?int
+    {
+        return $this->totalHoy;
+    }
+
+    public function setTotalHoy(?int $totalHoy): static
+    {
+        $this->totalHoy = $totalHoy;
+
+        return $this;
+    }
+
+    public function getTotalAcumulado(): ?int
+    {
+        return $this->totalAcumulado;
+    }
+
+    public function setTotalAcumulado(?int $totalAcumulado): static
+    {
+        $this->totalAcumulado = $totalAcumulado;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -174,42 +195,6 @@ class Nacimientos
     public function setEquinoAcumulado(?int $equinoAcumulado): static
     {
         $this->equinoAcumulado = $equinoAcumulado;
-
-        return $this;
-    }
-
-    public function getTotalhoy(): ?int
-    {
-        return $this->totalhoy;
-    }
-
-    public function setTotalhoy(?int $totalhoy): static
-    {
-        $this->totalhoy = $totalhoy;
-
-        return $this;
-    }
-
-    public function getTotalAcumulado(): ?int
-    {
-        return $this->totalAcumulado;
-    }
-
-    public function setTotalAcumulado(?int $totalAcumulado): static
-    {
-        $this->totalAcumulado = $totalAcumulado;
-
-        return $this;
-    }
-
-    public function getTotal(): ?array
-    {
-        return $this->total;
-    }
-
-    public function setTotal(?array $total): static
-    {
-        $this->total = $total;
 
         return $this;
     }

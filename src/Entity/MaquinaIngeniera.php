@@ -14,58 +14,77 @@ class MaquinaIngeniera
     #[ORM\Column]
     private ?int $id = null;
 
-   
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $observaciones = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nombreEntidad = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $buldocerA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $buldocerI = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $cargadorA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $cargadorI = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $excavadorA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $excavadorI = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $autoGruaA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $autoGruaI = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $geA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $geI = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $motoNiveladoraA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $motoNiveladoraI = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column (nullable: true)]
     private ?int $totalA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column (nullable: true)]
     private ?int $totalI = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $total = null;
+    public function getTotalA(): ?int
+    {
+        return $this->totalA;
+    }
+
+    public function setTotalA(?int $totalA): static
+    {
+        $this->totalA = $totalA;
+
+        return $this;
+    }
+
+    public function getTotalI(): ?int
+    {
+        return $this->totalI;
+    }
+
+    public function setTotalI(?int $totalI): static
+    {
+        $this->totalI = $totalI;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -116,18 +135,6 @@ class MaquinaIngeniera
     public function setBuldocerI(?int $buldocerI): static
     {
         $this->buldocerI = $buldocerI;
-
-        return $this;
-    }
-
-    public function getTotal(): ?array
-    {
-        return $this->total;
-    }
-
-    public function setTotal(?array $total): static
-    {
-        $this->total = $total;
 
         return $this;
     }
@@ -248,30 +255,6 @@ class MaquinaIngeniera
     public function setMotoNiveladoraI(?int $motoNiveladoraI): static
     {
         $this->motoNiveladoraI = $motoNiveladoraI;
-
-        return $this;
-    }
-
-    public function getTotalA(): ?int
-    {
-        return $this->totalA;
-    }
-
-    public function setTotalA(?int $totalA): static
-    {
-        $this->totalA = $totalA;
-
-        return $this;
-    }
-
-    public function getTotalI(): ?int
-    {
-        return $this->totalI;
-    }
-
-    public function setTotalI(?int $totalI): static
-    {
-        $this->totalI = $totalI;
 
         return $this;
     }

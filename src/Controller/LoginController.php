@@ -27,6 +27,7 @@ class LoginController extends AbstractController
     #[Route('/logout', name: 'logout')]
     public function logout(): void
     {
+        $this->addFlash('success', 'Sesión cerrada.');
         // Symfony se encarga del logout automáticamente
     }
 }

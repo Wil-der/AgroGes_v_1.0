@@ -44,7 +44,7 @@ class ChangePasswordType extends AbstractType
                     'label_attr' => ['class' => 'etiqueta'],
                 ],
                 'second_options' => [
-                    'label' => 'Repetir nueva contraseña',
+                    'label' => 'Repetir contraseña',
                     'attr' => ['class' => 'entrada'],
                     'row_attr' => ['class' => 'campo'],
                     'label_attr' => ['class' => 'etiqueta'],
@@ -53,7 +53,7 @@ class ChangePasswordType extends AbstractType
                 'constraints' => [
                     new NotBlank(['message' => 'Debe introducir una nueva contraseña.']),
                     new Length([
-                        'min' => 6,
+                        'min' => 8,
                         'minMessage' => 'La contraseña debe tener al menos {{ limit }} caracteres.',
                     ]),
                 ],

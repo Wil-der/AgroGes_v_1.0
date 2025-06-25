@@ -20,38 +20,59 @@ class EquipoRiego
     #[ORM\Column(length: 255)]
     private ?string $nombreEntidad = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $enrrolladorA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $enrrolladorI = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $molinoVientoA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $molinoVientoI = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $riegoElectricoA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $riegoElectricoI = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $equipoAbastoA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $equipoAbastoI = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column (nullable: true)]
     private ?int $totalA = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column (nullable: true)]
     private ?int $totalI = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $total = null;
+    public function getTotalA(): ?int
+    {
+        return $this->totalA;
+    }
+
+    public function setTotalA(?int $totalA): static
+    {
+        $this->totalA = $totalA;
+
+        return $this;
+    }
+
+    public function getTotalI(): ?int
+    {
+        return $this->totalI;
+    }
+
+    public function setTotalI(?int $totalI): static
+    {
+        $this->totalI = $totalI;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -90,18 +111,6 @@ class EquipoRiego
     public function setEnrrolladorA(?int $enrrolladorA): static
     {
         $this->enrrolladorA = $enrrolladorA;
-
-        return $this;
-    }
-
-    public function getTotal(): ?array
-    {
-        return $this->total;
-    }
-
-    public function setTotal(?array $total): static
-    {
-        $this->total = $total;
 
         return $this;
     }
@@ -186,30 +195,6 @@ class EquipoRiego
     public function setEquipoAbastoI(?int $equipoAbastoI): static
     {
         $this->equipoAbastoI = $equipoAbastoI;
-
-        return $this;
-    }
-
-    public function getTotalA(): ?int
-    {
-        return $this->totalA;
-    }
-
-    public function setTotalA(?int $totalA): static
-    {
-        $this->totalA = $totalA;
-
-        return $this;
-    }
-
-    public function getTotalI(): ?int
-    {
-        return $this->totalI;
-    }
-
-    public function setTotalI(?int $totalI): static
-    {
-        $this->totalI = $totalI;
 
         return $this;
     }

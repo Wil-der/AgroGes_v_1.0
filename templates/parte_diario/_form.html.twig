@@ -1,8 +1,11 @@
+
+
 <div class="form-container">
-	<p class="title">Parte Diario</p>
+
 {{ form_start(form) }}
-<p class="title" style="text-align: start;">{{ empresa | title }}</p>
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Crear') }}</button>
+    <span style="width: 100%; display: flex; justify-content: flex-end;">
+        <button class="btn">{{ button_label|default('Guardar') }}</button>
+    </span>
 {{ form_end(form) }}
     </div>

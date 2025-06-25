@@ -1,0 +1,20 @@
+<div class="container-migas">
+    <div>
+        <span><a href="http://">Inicio > </a></span>
+        {% if empresas is defined and empresas is not null %}
+            <span><a href="{{ path('app_empresa_index') }}">Empresas > </a></span>
+        {% endif %}
+        {% if empresa is defined and empresa is not null %}
+           <span><a href="{{ path('app_empresa_index') }}">Empresas > </a></span>
+           <span><a href="{{ path('app_empresa_show', { id: empresa.id }) }}">{{ empresa.name }} > </a></span>       
+        {% endif %}
+        {% if especialidads is defined and especialidads is not null %}
+            <span><a href="{{ path('app_especialidad_index') }}">Especialidades > </a></span>
+        {% endif %}
+        {% if files is defined and files is not null %}
+            <span><a href="{{ path('app_file_index') }}">{{ files[0].especialidad.name }} > </a></span>
+            <span><a href="{{ path('app_file_index') }}">Base Reglamentaria > </a></span>
+        {% endif %}
+        
+    </div>
+</div>

@@ -19,39 +19,37 @@ class Combustible
 
     #[ORM\Column(length: 255)]
     private ?string $nombreEntidad = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $dieselExistencia = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $dieselCobertura = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $gasolinaA83Existencia = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $gasolinaA83Cobertura = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $gasolinaA90Existencia = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $gasolinaA90Cobertura = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $lubricanteGrasaExistencia = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $lubricanteGrasaCobertura = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $lubricanteAceiteExistencia = null;
-
-    #[ORM\Column(nullable: true)]
+    
+    #[ORM\Column]
     private ?int $lubricanteAceiteCobertura = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?array $total = null;
+    
 
     public function getId(): ?int
     {
@@ -198,18 +196,6 @@ class Combustible
     public function setLubricanteAceiteCobertura(?int $lubricanteAceiteCobertura): static
     {
         $this->lubricanteAceiteCobertura = $lubricanteAceiteCobertura;
-
-        return $this;
-    }
-
-    public function getTotal(): ?array
-    {
-        return $this->total;
-    }
-
-    public function setTotal(?array $total): static
-    {
-        $this->total = $total;
 
         return $this;
     }

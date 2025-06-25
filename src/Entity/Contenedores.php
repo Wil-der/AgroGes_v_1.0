@@ -20,13 +20,13 @@ class Contenedores
     #[ORM\Column(length: 255)]
     private ?string $puerto = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $cantidad = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $cantidadExtraida = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $tipoMercancia = null;
 
     public function getId(): ?int

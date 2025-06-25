@@ -17,13 +17,13 @@ class Transportacion
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $observaciones = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $tipoTransporte = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $destinoCarga = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $cantidad = null;
 
     #[ORM\Column(length: 255)]

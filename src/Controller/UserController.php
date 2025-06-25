@@ -10,6 +10,8 @@ use App\Repository\FileRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Random\Engine\Secure;
+use Random\Randomizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormError;
@@ -34,6 +36,8 @@ final class UserController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
+        $passwordRandom = $this->generarContrasena(8);
+        $user->setPassword($passwordRandom);
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -92,7 +96,7 @@ final class UserController extends AbstractController
                 $entityManager->flush();
 
                 $this->addFlash('success', 'Contraseña actualizada correctamente.');
-                return $this->redirectToRoute('app_home'); // O adonde prefieras
+                return $this->redirectToRoute('app_home');
             }
         }
 
@@ -112,5 +116,19 @@ final class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    private function generarContrasena($longitud) {
+        // Caracteres permitidos
+        $caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789*/.';
+        $contrasena = '';
+        $maxIndex = strlen($caracteres) - 1;
+
+        for ($i = 0; $i < $longitud; $i++) {
+            $indice = random_int(0, $maxIndex);
+            $contrasena .= $caracteres[$indice];
+        }
+
+        return $contrasena;
     }
 }

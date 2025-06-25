@@ -13,16 +13,6 @@ class ParteDiarioType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // Campos de la entidad ParteDiario
-        $builder->add('fecha', null, [
-            'widget' => 'single_text',
-            'row_attr' => ['class' => 'campo-fecha'],
-            'attr' => [
-                'class' => 'form-control custom-input entrada ',
-                'placeholder' => 'Selecciona la fecha'
-            ],
-            'label'=> false
-        ]);
         // Formularios anidados
         $builder->add('hechosExtraordinarios', HechosExtraordinariosType::class, [
             'attr' => ['class' => 'form-group custom-form'],

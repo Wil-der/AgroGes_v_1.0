@@ -2,12 +2,12 @@
 
 {% block title %}Edit ParteDiario{% endblock %}
 
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/parteDiario.css') }}" />
+{% endblock %}
+
 {% block body %}
-    <h1>Edit ParteDiario</h1>
 
-    {{ include('parte_diario/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('parte_diario/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    <a href="{{ path('app_parte_diario_index') }}">back to list</a>
-
-    {{ include('parte_diario/_delete_form.html.twig') }}
 {% endblock %}
